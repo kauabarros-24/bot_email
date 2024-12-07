@@ -1,0 +1,18 @@
+[project]
+name = "bot_email"
+version = "0.1.0"
+description = "Default template for PDM package"
+authors = [
+    {name = "kaubarros-24", email = "martinsbarroskaua@gmail.com"},
+]
+dependencies = ["passage-identity>=2.5.1", "python-dotenv>=1.0.1", "uvicorn>=0.32.1", "fastapi>=0.115.6"]
+requires-python = "==3.11.*"
+readme = "README.md"
+license = {text = "MIT"}
+
+
+[tool.pdm]
+distribution = false
+
+[tool.pdm.scripts]
+r = "uvicorn src.bot_email.main:app --host 0.0.0.0 --port 8888"

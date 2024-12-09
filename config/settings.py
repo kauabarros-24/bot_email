@@ -41,9 +41,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'core.user',
     'simplejwt', 
     'drf_spectacular',
+    'reportlab',
+    'core.user',
+    'core.report',
+    
 ]
 
 MIDDLEWARE = [
@@ -160,3 +163,10 @@ SPECTACULAR_SETTINGS = {
     'VERSION': '1.0.0',  #
     'SERVE_INCLUDE_SCHEMA': False,  
 }
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = "martinsbarroskaua85@gmail.com"
+EMAIL_HOST_PASSWORD = "hlgx xdmn prhf areg"

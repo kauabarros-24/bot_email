@@ -2,18 +2,20 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from .models import Report
 from django.core.mail import EmailMultiAlternatives
-from io import BytesIO
-from utils import generate_report  
+from utils.generate_report import generate_pdf  
 
 @receiver(post_save, sender=Report)
 def generate_report_and_send_email(sender, instance, created, **kwargs):
     if created:  
         print('Estou sendo chamado')
+        print(instance)
         response = instance.content
         print(response)
+        print(instance.user)
         student = instance.user.email
+        print(student)
         
-        pdf = generate_report(name_person=student, text=response, title=student, turma=student)
+        pdf: dict = generate_pdf(name_person=student, text=response, title=student, turma=student)
         print(pdf)
         try:
             subject = "Trabalho"

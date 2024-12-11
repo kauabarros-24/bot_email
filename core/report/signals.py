@@ -2,7 +2,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from core.report.models import Report
 from django.core.mail import EmailMultiAlternatives
-from utils.generate_report import gene
+from utils.generate_report import generate_pdf
 
 @receiver(post_save, sender=Report)
 def generate_report_and_send_email(sender, instance, created, **kwargs):

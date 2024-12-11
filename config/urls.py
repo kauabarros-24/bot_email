@@ -2,12 +2,16 @@ from django.contrib import admin
 from django.urls import path, include
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView, SpectacularRedocView
 from rest_framework.routers import DefaultRouter
-from core.user.views import UserViewSet
+from core.user.views import UserViewSet, UserQuestionViewSet
 from core.report.views import ReportViewSet
+from core.gemini.views import GeminiAIViewSet
 
 router = DefaultRouter()
+router.register('gemini', GeminiAIViewSet, basename="gemini")
 router.register('report', ReportViewSet, basename="report")
+router.register('question', UserQuestionViewSet, basename="question")
 router.register('user', UserViewSet, basename="user")
+
 
 
 urlpatterns = [

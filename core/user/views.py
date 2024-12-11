@@ -4,8 +4,8 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
-from core.user.models import User
-from core.user.serializer import UserSerializer
+from core.user.models import User, UserQuestion
+from core.user.serializer import UserSerializer, UserQuestionSerializer
 
 
 class UserViewSet(ModelViewSet):
@@ -17,3 +17,7 @@ class UserViewSet(ModelViewSet):
         user = request.user
         serializer = UserSerializer(user)
         return Response(serializer.data, status=status.HTTP_200_OK)
+    
+class UserQuestionViewSet(ModelViewSet):
+    queryset = UserQuestion.objects.all()
+    serializer_class = UserQuestionSerializer

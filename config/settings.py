@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'reportlab',
     'core.user',
     'core.report',
+    'core.gemini',
     
 ]
 
@@ -170,3 +171,4 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = "martinsbarroskaua85@gmail.com"
 EMAIL_HOST_PASSWORD = "hlgx xdmn prhf areg"
+APPEND_SLASH = False

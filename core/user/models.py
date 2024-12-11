@@ -34,3 +34,11 @@ class User(AbstractBaseUser, PermissionsMixin):
     
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
+    
+class UserQuestion(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    question = models.CharField(max_length=4000)
+    teacher_mail = models.EmailField(max_length=255)
+    
+    def __str__(self):
+        return self.question

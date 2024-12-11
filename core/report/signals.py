@@ -1,27 +1,25 @@
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from .models import Report
+from core.report.models import Report
 from django.core.mail import EmailMultiAlternatives
-from utils.generate_report import generate_pdf  
+from utils.generate_report import gene
 
 @receiver(post_save, sender=Report)
 def generate_report_and_send_email(sender, instance, created, **kwargs):
     if created:  
-        print('Estou sendo chamado')
-        print(instance)
-        response = instance.content
-        print(response)
-        print(instance.user)
-        student = instance.user.email
-        print(student)
+        student = instance.gemini_ai.user_question.user
+        response = instance.gemini_ai.text_body
+        title = instance.gemini_ai.title
+         
         
-        pdf: dict = generate_pdf(name_person=student, text=response, title=student, turma=student)
+        
+        pdf: dict = generate_pdf(name_person=student.name, text=response, title=title, turma=None)
         print(pdf)
         try:
-            subject = "Trabalho"
-            recipient_list = [instance.teacher]  
-            text_content = "arroz é bom"
-            from_email = "martinsbarroskaua85@gmail.com"
+            subject = "O trabalho foi finalizado!"
+            recipient_list = [instance.gemini_ai.user_question.teacher_mail]  
+            text_content = "Prof, tudo bem? Ei, trabalho finalizado"
+            from_email = student.email
             email = EmailMultiAlternatives(subject=subject, to=recipient_list, from_email=from_email, body=text_content)
             email.attach('trabalho', pdf.getvalue(), 'application/pdf')
             email.send()

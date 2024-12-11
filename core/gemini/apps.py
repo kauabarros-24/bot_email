@@ -1,9 +1,9 @@
 from django.apps import AppConfig
 
 
-class UserConfig(AppConfig):
+class GeminiConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'core.user'
+    name = 'core.gemini'
     
     def ready(self):
-        import core.user.signals
+        import core.gemini.signals

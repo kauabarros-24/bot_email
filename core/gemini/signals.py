@@ -22,10 +22,10 @@ def request_ai(sender, created, instance, **kwargs):
             instance.save()        
             
             json_request = {
-                "gemini_ai": instance.id
+                "gemini_ai": instance.pk
             }
             try:
-                response = requests.post(f"{os.getenv('REQUEST')}/report", json=json_request)  # Corrigido os.getenv
+                response = requests.post(f"{os.getenv('REQUEST')}/report/", json=json_request)  # Corrigido os.getenv
                 print(response)
             except Exception as e:
                 print(e)

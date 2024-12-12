@@ -7,12 +7,10 @@ import os
 @receiver(post_save, sender=UserQuestion)
 def invite_ai(sender, instance, created, **kwargs):
     if created:
-        print("Sinal de criação acionado")
         api_url = os.getenv("REQUEST")
         if not api_url:
-            print("Erro: Variável de ambiente 'REQUEST' não configurada")
             return
-        
+
         json_data = {
             "user_question":instance.pk
         }

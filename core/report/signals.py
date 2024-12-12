@@ -10,8 +10,6 @@ def generate_report_and_send_email(sender, instance, created, **kwargs):
         student = instance.gemini_ai.user_question.user
         response = instance.gemini_ai.text_body
         title = instance.gemini_ai.title
-         
-        
         
         pdf: dict = generate_pdf(name_person=student.name, text=response, title=title, turma=None)
         print(pdf)
